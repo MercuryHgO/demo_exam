@@ -1,17 +1,29 @@
 {
   inputs = {
-    naersk.url = "github:nix-community/naersk/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
+    rust-overlay = { url = "github:oxalica/rust-overlay"; };
   };
 
-  outputs = { self, nixpkgs, utils, naersk }:
+  outputs = { self, nixpkgs, utils, rust-overlay }:
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { 
           inherit system;
+          overlays = [ (import rust-overlay) ];
         };
-        naersk-lib = pkgs.callPackage naersk { };
+        rustVersion = "latest";
+        rust = pkgs.rust-bin.stable.${rustVersion}.default.override {
+          extensions = [
+            "rust-src" # for rust-analyzer
+            "rust-analyzer"
+          ];
+          targets = [
+            "x86_64-pc-windows-gnu"
+            "x86_64-pc-windows-gnullvm"
+          ];
+        };
+        # naersk-lib = pkgs.callPackage naersk { };
         pkgConfigDeps = with pkgs; [
           gtk3
           glib
@@ -24,15 +36,15 @@
           librsvg
           libsoup_3
           openssl
+          sqlite
         ];
 
       in
       {
         # defaultPackage = naersk-lib.buildPackage ./.;
-        devShell = with pkgs; mkShell {
+        devShell = with pkgs; with builtins; mkShell {
           buildInputs = [
-            cargo
-            rustc
+            rust
             rustfmt
             pre-commit
             rustPackages.clippy
@@ -42,14 +54,18 @@
             xorg.libX11
             libxkbcommon
             gcc
+            sqlite
+            sqlx-cli
+            pkgsCross.mingwW64.stdenv.cc
           ];
 
           
-          PKG_CONFIG_PATH="${builtins.concatStringsSep ":" (builtins.map (pkg: "${pkg.dev}/lib/pkgconfig") pkgConfigDeps)}";
-          CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS="-L native=${pkgs.pkgsCross.mingwW64.windows.pthreads}/lib";
-          LD_LIBRARY_PATH="/run/opengl-driver/lib/:${lib.makeLibraryPath ([libGL libGLU wayland libxkbcommon])}";
-          DATABASE_URL="sqlite://${./interface/data.sqlite}";
-          RUST_SRC_PATH="${rustPlatform.rustLibSrc}";
+          PKG_CONFIG_PATH="${concatStringsSep ":" (map (pkg: "${pkg.dev}/lib/pkgconfig") pkgConfigDeps)}";
+          CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS="-L native=${pkgsCross.mingwW64.windows.pthreads}/lib";
+          LD_LIBRARY_PATH="/run/opengl-driver/lib/:${lib.makeLibraryPath ([libGL libGLU wayland libxkbcommon sqlite])}";
+          DATABASE_URL="sqlite:///home/bittermann/projects/module2/interface/data.sqlite";
+          # RUST_SRC_PATH="${rustPlatform.rustLibSrc}";
+          # ZHOPA="ZHOPA";
 
           shellHook = ''
 
