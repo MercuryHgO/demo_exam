@@ -1,0 +1,68 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT * FROM partners WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "name": "partner_type",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "partner_name",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "director",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "email",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "phone",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "legal_address",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "inn",
+        "ordinal": 6,
+        "type_info": "Text"
+      },
+      {
+        "name": "rating",
+        "ordinal": 7,
+        "type_info": "Integer"
+      },
+      {
+        "name": "id",
+        "ordinal": 8,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "6be20bbfd3eae8321faf684554050939d623a5b0201d7be2c7b6d73e2a9d85bf"
+}

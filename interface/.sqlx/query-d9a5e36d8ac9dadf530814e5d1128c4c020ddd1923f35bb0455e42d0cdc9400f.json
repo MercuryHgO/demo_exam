@@ -1,0 +1,68 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT * FROM partners",
+  "describe": {
+    "columns": [
+      {
+        "name": "partner_type",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "partner_name",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "director",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "email",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "phone",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "legal_address",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "inn",
+        "ordinal": 6,
+        "type_info": "Text"
+      },
+      {
+        "name": "rating",
+        "ordinal": 7,
+        "type_info": "Integer"
+      },
+      {
+        "name": "id",
+        "ordinal": 8,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "d9a5e36d8ac9dadf530814e5d1128c4c020ddd1923f35bb0455e42d0cdc9400f"
+}

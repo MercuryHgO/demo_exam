@@ -1,0 +1,26 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT * FROM product_types WHERE product_type = $1",
+  "describe": {
+    "columns": [
+      {
+        "name": "product_type",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "coefficient",
+        "ordinal": 1,
+        "type_info": "Float"
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "53ef6bcee6b718bb74f5213a483d5664fd7843dc94f67262124ef8e91a0f844d"
+}

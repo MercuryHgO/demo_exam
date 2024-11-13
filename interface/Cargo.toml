@@ -1,0 +1,12 @@
+[package]
+name = "interface"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.29.1"
+egui_extras = { version = "0.29.1", features = ["all_loaders"] }
+futures = "0.3.31"
+image = { version = "=0.25.0", features = ["png"] }
+postgres = "0.19.9"
+sqlx = { version = "0.8.2", features = ["postgres", "runtime-async-std", "sqlite", "uuid"] }

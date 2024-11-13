@@ -1,0 +1,44 @@
+{
+  "db_name": "SQLite",
+  "query": "SELECT * FROM sales",
+  "describe": {
+    "columns": [
+      {
+        "name": "product_id",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "quantity",
+        "ordinal": 1,
+        "type_info": "Integer"
+      },
+      {
+        "name": "sale_date",
+        "ordinal": 2,
+        "type_info": "Date"
+      },
+      {
+        "name": "partner_id",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "id",
+        "ordinal": 4,
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Right": 0
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "4c75abdcf100788aa39a2bee2ac341a218418dd23b8789c3f814c1ebb7de24c0"
+}
