@@ -87,7 +87,7 @@ impl MyEguiApp {
         // Use the cc.gl (a glow::Context) to create graphics shaders and buffers that you can use
         // for e.g. egui::PaintCallback.
 
-        cc.egui_ctx.set_visuals(egui::Visuals {
+        cc.egui_ctx.set_visuals_of(egui::Theme::Light,egui::Visuals {
             dark_mode: false,
             widgets: egui::style::Widgets {
                 inactive: egui::style::WidgetVisuals {
@@ -110,6 +110,8 @@ impl MyEguiApp {
             },
             ..egui::Visuals::light()
         });
+
+        cc.egui_ctx.set_theme(egui::Theme::Light);
 
         Self {
             db,
